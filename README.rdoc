@@ -1,0 +1,77 @@
+= has_associative_facades
+
+http://github.com/midas/has_associative_facades/tree/master
+
+
+== DESCRIPTION:
+
+A Rails gem that creates getters and setters for associated object's attributes to aid in not breaking Demeter's Law.
+
+
+== FEATURES:
+
+* Automatically creates facade getter methods for has one and belongs to associations.
+
+
+== TO IMPLEMENT:
+
+* Automatically creates facade setter methods for has one and belongs to associations.
+* Possibly provide a static way to define through macro type singleton methods (like attr_accessor, attr_reader, etc).
+
+
+== USAGE:
+
+For:
+  
+  class Account < ActiveRecord::Base
+    # has name attribute
+  end
+
+  class User
+    belongs_to :account
+  end
+
+You can now:
+
+  user = User.first # or User.new, User.find, etc
+  user.account_name # is the same as user.account.name
+
+
+== REQUIREMENTS:
+
+* Rails (ActiveRecord)
+
+
+== INSTALL:
+
+  sudo gem install midas-has_associative_facades
+
+In your Rails environment file:
+
+  config.gem 'midas-has_associative_facades', :version => '1.0.0', :lib => 'has_associative_facades', :source => 'http://github.com/midas/has_associative_facades/tree/master'
+
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2009 C. Jason Harrelson (midas)
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
