@@ -9,7 +9,7 @@ A Rails gem that creates getters and setters for associated object's attributes 
 
 == WHY
 
-The "Law of Demeter for Functions/Methods” (LoD-F) states:
+From http://en.wikipedia.org/wiki/Law_of_Demeter, the "Law of Demeter for Functions/Methods” (LoD-F) states:
 
 An object A can request a service (call a method) of an object instance B, but object A cannot “reach through” object 
 B to access yet another object, C, to request its services.  Doing so would mean that object A implicitly requires greater 
