@@ -7,6 +7,37 @@ http://github.com/midas/has_associative_facades/tree/master
 
 A Rails gem that creates getters and setters for associated object's attributes to aid in not breaking Demeter's Law.
 
+== WHY
+
+The "Law of Demeter for Functions/Methods” (LoD-F) states:
+
+An object A can request a service (call a method) of an object instance B, but object A cannot “reach through” object 
+B to access yet another object, C, to request its services.  Doing so would mean that object A implicitly requires greater 
+knowledge of object B’s internal structure. Instead, B’s class should be modified if necessary so that object A can simply 
+make the request directly of object B, and then let object B propagate the request to any relevant subcomponents. Or A should 
+have a direct reference to object C and make the call directly. If the law is followed, only object B knows its own internal 
+structure.
+
+In particular, an object should avoid invoking methods of a member object returned by another method. For many modern object 
+oriented languages that use a dot as field identifier, the law can be stated simply as "use only one dot". That is, the code 
+"a.b.Method()" breaks the law where "a.Method()" does not.
+
+As a simple example, when one wants to walk a dog, it would be folly to command the dog’s legs to walk directly; instead one 
+commands the dog and lets it take care of its legs itself
+
+The advantage of following the Law of Demeter is that the resulting software tends to be more maintainable and adaptable. Since 
+objects are less dependent on the internal structure of other objects, object containers can be changed without reworking their 
+callers.
+
+A disadvantage of the Law of Demeter is that it sometimes requires writing a large number of small “wrapper” methods (sometimes 
+referred to as Demeter Transmogrifiers) to propagate method calls to the components. Furthermore, a class’s interface can become 
+bulky as it hosts methods for contained classes resulting in a class without a cohesive interface.
+
+This is where has_associative_facades steps in.  Instead of writing this large number of wrapper methods, you can just call the 
+methods and they will be defined on an as needed basis, remaining in memory until the object is destroyed.  So now you can avoid
+coupling your objects together without the extra work.  Only the interface to your object need remain the same.  You can change 
+the internal implementation of methods to your heart;s content without breaking your project.
+
 
 == FEATURES:
 
@@ -28,6 +59,8 @@ For:
   end
 
   class User
+    has_associative_facades
+    
     belongs_to :account
   end
 
