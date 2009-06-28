@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{has_associative_facades}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["C. Jason Harrelson"]
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = %q{A Rails gem that creates getters and setters for associated object's attributes to aid in not breaking Demeter's Law.}
   s.email = ["jason@lookforwardwnterprises.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc"]
-  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "lib/has_associative_facades.rb", "lib/has_associative_facades/acts_methods.rb", "lib/has_associative_facades/instance_methods.rb", "script/console", "script/destroy", "script/generate", "spec/has_associative_facades_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/rspec.rake"]
+  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "has_associative_facades.gemspec", "lib/has_associative_facades.rb", "lib/has_associative_facades/acts_methods.rb", "lib/has_associative_facades/instance_methods.rb", "script/console", "script/destroy", "script/generate", "spec/has_associative_facades_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/rspec.rake"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/midas/has_associative_facades/tree/master}
   s.post_install_message = %q{PostInstall.txt}

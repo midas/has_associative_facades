@@ -5,7 +5,7 @@ require 'has_associative_facades/acts_methods'
 require 'has_associative_facades/instance_methods'
 
 module HasAssociativeFacades
-  VERSION = '1.0.0'
+  VERSION = '1.0.1'
   
   def self.included( base ) 
     base.extend ActsMethods 
