@@ -3,6 +3,7 @@ Manifest.txt
 PostInstall.txt
 README.rdoc
 Rakefile
+has_associative_facades.gemspec
 lib/has_associative_facades.rb
 lib/has_associative_facades/acts_methods.rb
 lib/has_associative_facades/instance_methods.rb
