@@ -6,7 +6,7 @@ module HasAssociativeFacades
     # new operator having all attributes set to nil or an find of some sort having all attributes populated.
     #
     # If the associated object is nil but has an attribute or method with the given name a nil is reurned.  Otherwise,
-    # the NoMethodError is thrown.
+    # the NoMethodError is raised.
     #
     def method_missing( method, *args )
       method_name = method.to_s
@@ -22,9 +22,22 @@ module HasAssociativeFacades
           break
         end
       end
+      if association.nil?
+        raise NoMethodError.new('has_associative_facades could find no ' +
+                                'association to resolve ' +
+                                "#{self.class.name}##{method}",
+                                method,
+                                args)
+      end
 
       if match = /#{association}_([_a-zA-Z]\w*)/.match( method_name )
-        throw ex if match.captures.empty? || match.captures.size > 2
+        if match.captures.empty? || match.captures.size > 2
+          raise NoMethodError.new('has_associative_facades failed to resolve ' +
+                                  "#{self.class.name}##{method} via "          +
+                                  "#{self.class.name}##{association}",
+                                  method,
+                                  args)
+        end
         attribute = match.captures[0].to_sym
 
         assoc_klass = nil
@@ -33,7 +46,16 @@ module HasAssociativeFacades
         rescue
           assoc_klass = association_reflection[1].options[:class_name].constantize
         end
-        throw ex unless assoc_klass.columns_hash.has_key?( attribute.to_s ) || assoc_klass.public_instance_methods.include?( attribute.to_s )
+        unless assoc_klass.columns_hash.has_key?( attribute.to_s ) || assoc_klass.public_instance_methods.include?( attribute.to_s )
+          if match.captures.empty? || match.captures.size > 2
+            raise NoMethodError.new('has_associative_facades could find no ' +
+                                    "#{assoc_klass.name}##{method} "         +
+                                    'method to resolve '                     +
+                                    "#{self.class.name}##{method}",
+                                    method,
+                                    args)
+          end
+        end
 
         self.class.class_eval <<-END
         def #{method_name}
@@ -45,7 +67,11 @@ module HasAssociativeFacades
         return self.send( method_name )
       end
 
-      throw ex
+      raise NoMethodError.new('has_associative_facades failed to resolve ' +
+                              "#{self.class.name}##{method} via "          +
+                              "any association on #{self.class.name}",
+                              method,
+                              args)
     end
     
   end
