@@ -72,7 +72,7 @@ You can now:
 
 == REQUIREMENTS:
 
-* Rails (ActiveRecord)
+* ActiveRecord
 
 
 == INSTALL:
@@ -81,7 +81,7 @@ You can now:
 
 In your Rails environment file:
 
-  config.gem 'midas-has_associative_facades', :version => '1.0.0', :lib => 'has_associative_facades', :source => 'http://gems.github.com'
+  config.gem 'has_associative_facades'
 
 
 == LICENSE:

@@ -1,3 +1,8 @@
+== 1.0.3 2010-04-26
+
+* Got rid of situation where no method error or other exceptions are eaten instead of raised again.
+
+
 == 1.0.0 2009-06-25
 
 * Initial release
